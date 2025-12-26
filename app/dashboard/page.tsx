@@ -42,32 +42,35 @@ export default function DashboardPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p>Loading...</p>
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-primary-900 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-sm text-primary-500">Loading...</p>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow-sm border-b border-gray-200">
+    <div className="min-h-screen">
+      <nav className="bg-white border-b border-primary-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div>
-              <h1 className="text-xl font-bold text-gray-900">Personal Finance Tracker</h1>
-              <p className="text-sm text-gray-600">{user.email}</p>
+              <h1 className="text-lg font-semibold text-primary-900 tracking-tight">Finance Tracker</h1>
+              <p className="text-xs text-primary-500">{user.email}</p>
             </div>
             <button
               onClick={handleLogout}
-              className="px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded border border-red-300 hover:border-red-400"
+              className="px-4 py-2 text-xs font-medium text-primary-700 hover:text-primary-900 hover:bg-primary-50 rounded-lg border border-primary-200 hover:border-primary-300 transition-all duration-200"
             >
-              Log Out
+              Sign Out
             </button>
           </div>
         </div>
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-1">
             <TransactionForm onSuccess={handleTransactionAdded} />
           </div>

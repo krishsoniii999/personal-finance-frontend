@@ -35,15 +35,18 @@ export default function TransactionForm({ onSuccess }: { onSuccess: () => void }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow space-y-4">
-      <h3 className="text-xl font-bold">Add Transaction</h3>
+    <form onSubmit={handleSubmit} className="card-elegant p-6 space-y-5">
+      <div>
+        <h3 className="text-lg font-semibold text-primary-900 tracking-tight">New Transaction</h3>
+        <p className="text-xs text-primary-500 mt-1">Add income or expense</p>
+      </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Type</label>
+        <label className="block text-xs font-medium text-primary-600 mb-2 uppercase tracking-wide">Type</label>
         <select
           value={type}
           onChange={(e) => setType(e.target.value as 'income' | 'expense')}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="input-elegant"
         >
           <option value="expense">Expense</option>
           <option value="income">Income</option>
@@ -51,33 +54,38 @@ export default function TransactionForm({ onSuccess }: { onSuccess: () => void }
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Amount ($)</label>
-        <input
-          type="number"
-          step="0.01"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="0.00"
-          required
-        />
+        <label className="block text-xs font-medium text-primary-600 mb-2 uppercase tracking-wide">Amount</label>
+        <div className="relative">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+            <span className="text-primary-500 text-sm">$</span>
+          </div>
+          <input
+            type="number"
+            step="0.01"
+            value={amount}
+            onChange={(e) => setAmount(e.target.value)}
+            className="input-elegant pl-8"
+            placeholder="0.00"
+            required
+          />
+        </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
+        <label className="block text-xs font-medium text-primary-600 mb-2 uppercase tracking-wide">Description</label>
         <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          placeholder="Optional"
+          className="input-elegant"
+          placeholder="What was this for?"
         />
       </div>
 
       <button
         type="submit"
         disabled={loading}
-        className="w-full bg-green-600 text-white py-2 px-4 rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:opacity-50"
+        className="w-full btn-primary"
       >
         {loading ? 'Adding...' : 'Add Transaction'}
       </button>
